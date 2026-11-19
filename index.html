@@ -486,7 +486,7 @@ section.zone { padding-block: clamp(56px, 8vw, 104px); border-top: 1px solid var
 .pulse path.ghost { stroke: var(--line); animation: none; stroke-dashoffset: 0; }
 @keyframes ecg { 70% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: -1400; } }
 .credits p { font-size: 19px; color: var(--muted); max-width: 52ch; }
-.contact { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 32px; }
+.contact { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-top: 32px; max-width: 880px; }
 .contact__card { display: grid; gap: 6px; align-content: start; padding: 18px 20px; text-decoration: none; color: var(--ink); border: 2px solid var(--ink); transition: transform .15s, box-shadow .15s; min-width: 0; }
 a.contact__card:hover, .contact__card:focus-within { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--cobalt); }
 .contact__label { font-family: var(--font-pixel); font-size: 11px; color: var(--cobalt); letter-spacing: .06em; }
@@ -741,16 +741,21 @@ a.contact__value:hover { text-decoration: underline; text-decoration-color: var(
       </svg>
       <p>Mine usually starts somewhere between a game idea, a useful tool, and the question: how can this feel better to use? If you want to build something like that together, get in touch.</p>
       <div class="contact">
+        <div class="card contact__card">
+          <span class="contact__label">Email</span>
+          <a class="contact__value" id="email" href="mailto:jai.ramsarran@gmail.com">jai.ramsarran@gmail.com</a>
+          <button class="contact__copy" type="button" data-copy="email" data-label="Copy email">Copy email</button>
+        </div>
+        <div class="card contact__card">
+          <span class="contact__label">Phone</span>
+          <a class="contact__value" id="phone" href="tel:+18687610271">+1 (868) 761-0271</a>
+          <button class="contact__copy" type="button" data-copy="phone" data-label="Copy number">Copy number</button>
+        </div>
         <a class="card contact__card" href="https://www.linkedin.com/in/jai-ramsarran-84683140a/" target="_blank" rel="noopener">
           <span class="contact__label">LinkedIn</span>
           <span class="contact__value">Jai Ramsarran</span>
           <span class="contact__hint">Connect ↗</span>
         </a>
-        <div class="card contact__card">
-          <span class="contact__label">Phone</span>
-          <a class="contact__value" id="phone" href="tel:+18687610271">+1 (868) 761-0271</a>
-          <button class="contact__copy" type="button" id="copyPhone">Copy number</button>
-        </div>
         <a class="card contact__card" href="https://github.com/KaveeshRamsarran" target="_blank" rel="noopener">
           <span class="contact__label">GitHub</span>
           <span class="contact__value">@KaveeshRamsarran</span>
@@ -1180,12 +1185,12 @@ a.contact__value:hover { text-decoration: underline; text-decoration-color: var(
   });
 
   /* ================= Contact ================= */
-  $('#copyPhone').addEventListener('click', e => {
-    const btn = e.currentTarget, num = '+1 (868) 761-0271';
-    const done = msg => { btn.textContent = msg; setTimeout(() => { btn.textContent = 'Copy number'; }, 1800); };
-    const fallback = () => { const r = document.createRange(); r.selectNodeContents($('#phone')); const s = getSelection(); s.removeAllRanges(); s.addRange(r); done('Selected, press Ctrl+C'); };
-    try { navigator.clipboard.writeText(num).then(() => done('Copied'), fallback); } catch (err) { fallback(); }
-  });
+  $$('[data-copy]').forEach(btn => btn.addEventListener('click', () => {
+    const el = document.getElementById(btn.dataset.copy), text = el.textContent.trim();
+    const done = msg => { btn.textContent = msg; setTimeout(() => { btn.textContent = btn.dataset.label; }, 1800); };
+    const fallback = () => { const r = document.createRange(); r.selectNodeContents(el); const s = getSelection(); s.removeAllRanges(); s.addRange(r); done('Selected, press Ctrl+C'); };
+    try { navigator.clipboard.writeText(text).then(() => done('Copied'), fallback); } catch (err) { fallback(); }
+  }));
 
   /* ================= Pixel world ================= */
   function mulberry(a) { return function () { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
