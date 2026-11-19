@@ -599,7 +599,7 @@ a.contact__value:hover { text-decoration: underline; text-decoration-color: var(
         <div class="hero__tips">
           <span><kbd>F</kbd> flashlight mode</span>
           <span><span class="trophy"></span> 8 achievements to find</span>
-          <span>Click the world to play god →</span>
+          <span>Click the world to shape it →</span>
         </div>
       </div>
 
@@ -609,7 +609,7 @@ a.contact__value:hover { text-decoration: underline; text-decoration-color: var(
           <span class="world__stats"><span>Year <b id="wYear">0</b></span><span>Pop <b id="wPop">0</b></span><span>Homes <b id="wHomes">0</b></span><span>Kingdoms <b id="wKing">0</b></span></span>
         </div>
         <div class="world__stage"><canvas id="world" width="120" height="72" aria-label="Pixel island with villages. Choose a power, then click or drag on the map."></canvas></div>
-        <div class="world__tools" role="toolbar" aria-label="Divine powers">
+        <div class="world__tools" role="toolbar" aria-label="World tools">
           <button class="tool" type="button" data-tool="village" aria-pressed="true"><i style="background:#D64848"></i>Found village</button>
           <button class="tool" type="button" data-tool="forest" aria-pressed="false"><i style="background:#2C7A44"></i>Grow forest</button>
           <button class="tool" type="button" data-tool="raise" aria-pressed="false"><i style="background:#C9B27C"></i>Raise land</button>
@@ -617,7 +617,7 @@ a.contact__value:hover { text-decoration: underline; text-decoration-color: var(
           <button class="tool tool--right" type="button" id="wPause" aria-pressed="false">Pause</button>
           <button class="tool" type="button" id="wNew">New world</button>
         </div>
-        <p class="world__note">A pocket-sized tribute to EarthPlay, my god simulator. Villagers wander, build homes and grow kingdoms on their own.</p>
+        <p class="world__note">A pocket-sized tribute to EarthPlay, my earth simulator. Villagers wander, build homes and grow kingdoms on their own.</p>
       </div>
     </div>
   </section>
@@ -824,7 +824,7 @@ a.contact__value:hover { text-decoration: underline; text-decoration-color: var(
   /* ================= Achievements ================= */
   const ACH = [
     { id: 'spawn', name: 'Spawned in', desc: "Loaded Jai's save file.", hint: 'Free with every visit.' },
-    { id: 'god', name: 'Part-time deity', desc: 'Used a power on the tiny world.', hint: 'The world at the top is clickable.' },
+    { id: 'god', name: 'World builder', desc: 'Shaped the tiny world.', hint: 'The world at the top is clickable.' },
     { id: 'reroll', name: 'Identity crisis', desc: "Rerolled Jai's title three times.", hint: 'Titles are not permanent.' },
     { id: 'sorted', name: 'Organized', desc: 'Filtered the quest log.', hint: 'Quests come in classes.' },
     { id: 'curious', name: 'Quest reader', desc: 'Opened a project file.', hint: 'Every quest card opens.' },
@@ -872,9 +872,9 @@ a.contact__value:hover { text-decoration: underline; text-decoration-color: var(
       highlights: ['Handles text and scanned PDFs, with OCR as a fallback.', 'Two-stage prompting keeps generated cards grounded in the source material.', 'Basic, cloze and image cards, each tagged easy, medium or hard.', 'Quizzes with multiple choice, true/false, fill-in-the-blank and short answer, plus time limits and pass marks.', 'SM-2 spaced repetition schedules your reviews, with streaks and topic mastery charts.'],
       stack: ['Python', 'React', 'NLP', 'OCR'], skills: ['Python', 'React'], links: [gh('Quizzr')] },
     { id: 'earthplay', title: 'EarthPlay', cats: ['games'], year: '2025', status: 'Playable', pill: 'play', art: 'earth',
-      blurb: 'A pixel god simulator in plain HTML, CSS and JavaScript. Build kingdoms, then ruin them.',
-      summary: 'EarthPlay is a god simulator in the spirit of WorldBox, written without a framework or engine. You shape a world, seed civilizations and watch them grow, fight and evolve.',
-      highlights: ['Five races with their own traits and tech speeds: humans, elves, dwarves, orcs and undead.', 'Kingdoms form on their own and track territory, population, food, gold, wood, stone and happiness.', 'Ten divine powers and ten biomes.', 'Procedurally generated pixel sprites and a small sound system.', 'The tiny world at the top of this page is a nod to it.'],
+      blurb: 'A pixel earth simulator in plain HTML, CSS and JavaScript. Shape the land and watch civilizations grow.',
+      summary: 'EarthPlay is an earth simulator in the spirit of WorldBox, written without a framework or engine. You shape a world, seed civilizations and watch them grow, fight and evolve.',
+      highlights: ['Five races with their own traits and tech speeds: humans, elves, dwarves, orcs and undead.', 'Kingdoms form on their own and track territory, population, food, gold, wood, stone and happiness.', 'Ten world-shaping powers and ten biomes.', 'Procedurally generated pixel sprites and a small sound system.', 'The tiny world at the top of this page is a nod to it.'],
       stack: ['JavaScript', 'Canvas', 'Simulation'], skills: ['JavaScript', 'HTML & CSS'], links: [gh('EarthPlay')] },
     { id: 'watchingdark', title: 'The Watching Dark', cats: ['games'], year: '2025', status: 'Playable', pill: 'play', art: 'dark',
       blurb: 'A first-person horror maze. Your flashlight battery is low and something is following you.',
@@ -1059,7 +1059,7 @@ a.contact__value:hover { text-decoration: underline; text-decoration-color: var(
     return `<div class="stat" style="--c:${c}"><span class="stat__label">${l}</span><span class="segs">${Array.from({ length: 8 }, (_, i) => `<i class="${i < n ? 'on' : ''}" style="--n:${i}"></i>`).join('')}</span><span class="stat__lv">LV ${n}</span></div>`;
   }).join('');
 
-  const TITLES = ['Productivity Menace', 'Wandering Potato', 'Part-time Deity', 'Keeper of Room 7', 'Flashlight Hoarder', 'Spaced-Repetition Enjoyer', 'Elixir Accountant', 'Countdown Conductor', 'Patch Notes Poet', 'Certified Maze Survivor'];
+  const TITLES = ['Productivity Menace', 'Wandering Potato', 'Weekend Cartographer', 'Keeper of Room 7', 'Flashlight Hoarder', 'Spaced-Repetition Enjoyer', 'Elixir Accountant', 'Countdown Conductor', 'Patch Notes Poet', 'Certified Maze Survivor'];
   let tIdx = 0, rerolls = 0;
   $('#reroll').addEventListener('click', () => {
     let n; do { n = Math.floor(Math.random() * TITLES.length); } while (n === tIdx);
